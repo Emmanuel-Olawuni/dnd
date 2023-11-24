@@ -20,6 +20,7 @@ import {
   FormDescription,
   FormLabel,
 } from "../../shadcnui/ui/form";
+import { Switch } from "@/shadcnui/ui/switch";
 const type: ElementsType = "TextField";
 const extraAttributes = {
   label: "Text Field",
@@ -179,6 +180,25 @@ function propertiesComponent({
                 />
               </FormControl>
               <FormDescription>The helperText of the field <br /> It will be displayed below the field. </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='required'
+          render={({ field }) => (
+            <FormItem className=" flex items-center justify-between rounded-lg  shadow-sm">
+              <div className=" space-y-3">
+
+
+              <FormLabel>Required</FormLabel>
+            
+              <FormDescription>The helperText of the field <br /> It will be displayed below the field. </FormDescription>
+              </div>
+              <FormControl>
+             <Switch checked={field.value} onCheckedChange={field.onChange} />
+             </FormControl>
               <FormMessage />
             </FormItem>
           )}

@@ -92,7 +92,7 @@ function FormComponent({
   const element = elementInstance as CustomInstance;
 
   const [value, setValue] = useState(defaultValue || "");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<Boolean>(false);
 
   useEffect(() => {
     setError(isInvalid === true);

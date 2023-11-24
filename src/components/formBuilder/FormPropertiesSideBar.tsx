@@ -3,6 +3,7 @@ import UseDesigner from "../hooks/UserDesigner";
 import { FormElements } from "./FormElements";
 import { Button } from "@nextui-org/react";
 import { AiOutlineClose } from "react-icons/ai";
+import { Separator } from "@/shadcnui/ui/separator";
 
 const FormPropertiesSideBar = () => {
   const { selectedElement, setSelectedElement } = UseDesigner();
@@ -16,6 +17,7 @@ const FormPropertiesSideBar = () => {
           <AiOutlineClose />
         </Button>
       </div>
+      <Separator className=" mb-4" />
       <Properties elementInstance={selectedElement}/>
     </div>
   );

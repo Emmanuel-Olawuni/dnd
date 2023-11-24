@@ -37,7 +37,7 @@ const Designer = () => {
         const newElement = FormElements[type as ElementsType].construct(
           idGenerator()
         );
-        addElement(0, newElement);
+        addElement(elements.length, newElement);
       }
     },
   });

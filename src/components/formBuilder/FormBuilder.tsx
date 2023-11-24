@@ -3,6 +3,7 @@ import Designer from "./Designer";
 import { MdPreview, MdPublish, MdSave } from "react-icons/md";
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import DragOverlayWrapper from "./DragOverlayWrapper";
+import PreviewDialogBtn from "./PreviewDialogBtn";
 
 type form = string | string[];
 
@@ -26,7 +27,7 @@ const FormBuilder = ({ form }: { form: form }) => {
           <div className=" p-2 font-nunito"> Form : {form}</div>
           <div className="flex">
             <div className="flex justify-center items-center p-2  gap-1 font-nunito text-white-100/80 font-thin tracking-wider text-sm cursor-pointer">
-              <MdPreview /> <p>Preview</p>
+    <PreviewDialogBtn />
             </div>
             <div className="flex justify-center items-center p-2  gap-1 font-nunito text-white-100/80 font-thin tracking-wider  text-sm cursor-pointer">
               <MdSave /> <p>Save</p>
