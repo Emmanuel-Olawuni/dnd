@@ -19,9 +19,8 @@ import {
   FormItem,
   FormDescription,
   FormLabel,
-} from "./../ui/shadeUi/form";
-
-const type: ElementsType = "Textfield";
+} from "../../shadcnui/ui/form";
+const type: ElementsType = "TextField";
 const extraAttributes = {
   label: "Text Field",
   helperText: "helper Text",
@@ -42,6 +41,14 @@ export const TextFieldElements: FormElement = {
   designerBtnElements: {
     icon: MdTextFields,
     label: "Textfields",
+  },
+  validate: (formElement: FormElementsInstance, currentValue: string): boolean => {
+    const element = formElement as CustomInstance;
+    if (element.extraAttributes.required) {
+      return currentValue.length > 0;
+    }
+
+    return true;
   },
 };
 type CustomInstance = FormElementsInstance & {
@@ -66,10 +73,10 @@ function DesignerComponent({
       <label>
         {label}
         {required && "*"}
-        <Input readOnly disabled placeholder={placeholder} />
+        <Input readOnly radius="md" disabled placeholder={placeholder} className=" text-white  rounded-md" />
         {helperText && (
-          <p className=" text-muted-foreground text-[0.6rem]">{helperText}</p>
-        )}
+          <p className=" text-muted-foreground text-[12px]">{helperText}</p>
+          )}
       </label>
     </div>
   );
@@ -97,31 +104,86 @@ function propertiesComponent({
   }, [element, form]);
 
   function applyChanges(value: propertiesFormSchema) {
+    const { label, helperText, placeHolder, required } = value;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
-        label: value.label,
-        helperText: value.helperText,
-        placeHolder: value.placeHolder,
-        required: value.required,
+        label,
+        helperText,
+        placeHolder,
+        required,
       },
     });
   }
-  return <Form  {...form}>
-<form onBlur={form.handleSubmit(applyChanges)} className=" space-y-3">
-<FormField control={form.control} render={({field})=> {
-  <FormItem>
-    <FormLabel>Label</FormLabel>
-    <FormControl>
-      <Input />
-    </FormControl>
-    <FormDescription>
-      The label of the field <br /> It will be displayed above the field
-    </FormDescription>
-    <FormMessage />
-  </FormItem>
-}} />
-
-</form>
-  </Form>;
+  return (
+    <Form {...form}>
+      <form
+        onBlur={form.handleSubmit(applyChanges)}
+        onSubmit={(e) => e.preventDefault()}
+        className=" space-y-3"
+      >
+        <FormField
+          control={form.control}
+          name="label"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Label</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormDescription>
+                {" "}
+                The label of the field. <br /> It will be displayed above the
+                field
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* <FormField
+          control={form.control}
+          name="placeHolder"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Placeholder</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormDescription>The Placeholder Text</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        /> */}
+        <FormField
+          control={form.control}
+          name='helperText'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>HelperText</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormDescription>The helperText of the field <br /> It will be displayed below the field. </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </form>
+    </Form>
+  );
 }

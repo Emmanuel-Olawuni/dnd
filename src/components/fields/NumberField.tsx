@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ElementsType, FormElement, FormElementInstance, SubmitFunction } from "../FormElements";
-import useDesigner from "../hooks/useDesigner";
+import { ElementsType, FormElement, FormElementsInstance, SubmitFunction } from "../formBuilder/FormElements";
+
 import {Input } from '@nextui-org/react'
 
 import { cn } from "@/lib/utils";
 import { Bs123 } from "react-icons/bs";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-import { Switch } from "../ui/switch";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../shadcnui/ui/form";
+import { Switch } from "../../shadcnui/ui/switch";
+import UseDesigner from "../hooks/UserDesigner";
 
 const type: ElementsType = "NumberField";
 
@@ -35,15 +36,15 @@ export const NumberFieldFormElement: FormElement = {
     type,
     extraAttributes,
   }),
-  designerBtnElement: {
+  designerBtnElements: {
     icon: Bs123,
     label: "Number Field",
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
-  propertiesComponent: PropertiesComponent,
+  propertiesComponents: PropertiesComponent,
 
-  validate: (formElement: FormElementInstance, currentValue: string): boolean => {
+  validate: (formElement: FormElementsInstance, currentValue: string): boolean => {
     const element = formElement as CustomInstance;
     if (element.extraAttributes.required) {
       return currentValue.length > 0;
@@ -53,11 +54,11 @@ export const NumberFieldFormElement: FormElement = {
   },
 };
 
-type CustomInstance = FormElementInstance & {
+type CustomInstance = FormElementsInstance & {
   extraAttributes: typeof extraAttributes;
 };
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
   const { label, required, placeHolder, helperText } = element.extraAttributes;
   return (
@@ -78,7 +79,7 @@ function FormComponent({
   isInvalid,
   defaultValue,
 }: {
-  elementInstance: FormElementInstance;
+  elementInstance: FormElementsInstance;
   submitValue?: SubmitFunction;
   isInvalid?: boolean;
   defaultValue?: string;
@@ -119,9 +120,9 @@ function FormComponent({
 }
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
-  const { updateElement } = useDesigner();
+  const { updateElement } = UseDesigner();
   const form = useForm<propertiesFormSchemaType>({
    
     mode: "onBlur",

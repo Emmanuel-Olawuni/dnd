@@ -4,20 +4,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ElementsType, FormElement, FormElementInstance, SubmitFunction } from "../FormElements";
-import useDesigner from "../hooks/useDesigner";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { ElementsType, FormElement, FormElementsInstance, SubmitFunction } from "../formBuilder/FormElements";
+
+import { Input } from "../../shadcnui/ui/input";
+import { Label } from "../../shadcnui/ui/label";
 
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { BsFillCalendarDateFill } from "react-icons/bs";
-import { Button } from "../ui/button";
-import { Calendar } from "../ui/calendar";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Switch } from "../ui/switch";
+import { Button } from "../../shadcnui/ui/button";
+import { Calendar } from "../../shadcnui/ui/calendar";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../shadcnui/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "../../shadcnui/ui/popover";
+import { Switch } from "../../shadcnui/ui/switch";
+import UseDesigner from "../hooks/UserDesigner";
 
 const type: ElementsType = "DateField";
 
@@ -40,15 +41,15 @@ export const DateFieldFormElement: FormElement = {
     type,
     extraAttributes,
   }),
-  designerBtnElement: {
+  designerBtnElements: {
     icon: BsFillCalendarDateFill,
     label: "Date Field",
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
-  propertiesComponent: PropertiesComponent,
+  propertiesComponents: PropertiesComponent,
 
-  validate: (formElement: FormElementInstance, currentValue: string): boolean => {
+  validate: (formElement: FormElementsInstance, currentValue: string): boolean => {
     const element = formElement as CustomInstance;
     if (element.extraAttributes.required) {
       return currentValue.length > 0;
@@ -58,11 +59,11 @@ export const DateFieldFormElement: FormElement = {
   },
 };
 
-type CustomInstance = FormElementInstance & {
+type CustomInstance = FormElementsInstance & {
   extraAttributes: typeof extraAttributes;
 };
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
   const { label, required, placeHolder, helperText } = element.extraAttributes;
   return (
@@ -86,7 +87,7 @@ function FormComponent({
   isInvalid,
   defaultValue,
 }: {
-  elementInstance: FormElementInstance;
+  elementInstance: FormElementsInstance;
   submitValue?: SubmitFunction;
   isInvalid?: boolean;
   defaultValue?: string;
@@ -145,9 +146,9 @@ function FormComponent({
 }
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
-  const { updateElement } = useDesigner();
+  const { updateElement } = UseDesigner();
   const form = useForm<propertiesFormSchemaType>({
     resolver: zodResolver(propertiesSchema),
     mode: "onBlur",

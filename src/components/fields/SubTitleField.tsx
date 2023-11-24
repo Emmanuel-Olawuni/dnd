@@ -4,13 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ElementsType, FormElement, FormElementInstance } from "../FormElements";
-import useDesigner from "../hooks/useDesigner";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { ElementsType, FormElement, FormElementsInstance } from "../formBuilder/FormElements";
+
+import { Input } from "../../shadcnui/ui/input";
+import { Label } from "../../shadcnui/ui/label";
 
 import { LuHeading2 } from "react-icons/lu";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../shadcnui/ui/form";
+import UseDesigner from "../hooks/UserDesigner";
 
 const type: ElementsType = "SubTitleField";
 
@@ -29,22 +30,22 @@ export const SubTitleFieldFormElement: FormElement = {
     type,
     extraAttributes,
   }),
-  designerBtnElement: {
+  designerBtnElements: {
     icon: LuHeading2,
     label: "SubTitle field",
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
-  propertiesComponent: PropertiesComponent,
+  propertiesComponents: PropertiesComponent,
 
   validate: () => true,
 };
 
-type CustomInstance = FormElementInstance & {
+type CustomInstance = FormElementsInstance & {
   extraAttributes: typeof extraAttributes;
 };
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
   const { title } = element.extraAttributes;
   return (
@@ -55,7 +56,7 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
   );
 }
 
-function FormComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function FormComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
 
   const { title } = element.extraAttributes;
@@ -64,9 +65,9 @@ function FormComponent({ elementInstance }: { elementInstance: FormElementInstan
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
 
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
-  const { updateElement } = useDesigner();
+  const { updateElement } = UseDesigner();
   const form = useForm<propertiesFormSchemaType>({
     resolver: zodResolver(propertiesSchema),
     mode: "onBlur",

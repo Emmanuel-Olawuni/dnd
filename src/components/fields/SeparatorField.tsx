@@ -1,10 +1,10 @@
 "use client";
 
-import { ElementsType, FormElement, FormElementInstance } from "../FormElements";
-import { Label } from "../ui/label";
+import { ElementsType, FormElement, FormElementsInstance } from "../formBuilder/FormElements";
+import { Label } from "../../shadcnui/ui/label";
 
 import { RiSeparator } from "react-icons/ri";
-import { Separator } from "../ui/separator";
+import { Separator } from "../../shadcnui/ui/separator";
 
 const type: ElementsType = "SeparatorField";
 
@@ -14,18 +14,18 @@ export const SeparatorFieldFormElement: FormElement = {
     id,
     type,
   }),
-  designerBtnElement: {
+  designerBtnElements: {
     icon: RiSeparator,
     label: "Separator field",
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
-  propertiesComponent: PropertiesComponent,
+  propertiesComponents: PropertiesComponent,
 
   validate: () => true,
 };
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   return (
     <div className="flex flex-col gap-2 w-full">
       <Label className="text-muted-foreground">Separator field</Label>
@@ -34,10 +34,10 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
   );
 }
 
-function FormComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function FormComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   return <Separator />;
 }
 
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   return <p>No properties for this element</p>;
 }

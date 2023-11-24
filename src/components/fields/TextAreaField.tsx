@@ -1,20 +1,20 @@
 "use client";
 
-import { ElementsType, FormElement, FormElementInstance, SubmitFunction } from "../FormElements";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { ElementsType, FormElement, FormElementsInstance, SubmitFunction } from "../formBuilder/FormElements";
+import { Label } from "../../shadcnui/ui/label";
+import { Input } from "../../shadcnui/ui/input";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import useDesigner from "../hooks/useDesigner";
 
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-import { Switch } from "../ui/switch";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../shadcnui/ui/form";
+import { Switch } from "../../shadcnui/ui/switch";
 import { cn } from "@/lib/utils";
 import { BsTextareaResize } from "react-icons/bs";
-import { Textarea } from "../ui/textarea";
-import { Slider } from "../ui/slider";
+import { Textarea } from "../../shadcnui/ui/textarea";
+import { Slider } from "../../shadcnui/ui/slider";
+import UseDesigner from "../hooks/UserDesigner";
 
 const type: ElementsType = "TextAreaField";
 
@@ -41,15 +41,15 @@ export const TextAreaFormElement: FormElement = {
     type,
     extraAttributes,
   }),
-  designerBtnElement: {
+  designerBtnElements: {
     icon: BsTextareaResize,
     label: "TextArea Field",
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
-  propertiesComponent: PropertiesComponent,
+  propertiesComponents: PropertiesComponent,
 
-  validate: (formElement: FormElementInstance, currentValue: string): boolean => {
+  validate: (formElement: FormElementsInstance, currentValue: string): boolean => {
     const element = formElement as CustomInstance;
     if (element.extraAttributes.required) {
       return currentValue.length > 0;
@@ -59,11 +59,11 @@ export const TextAreaFormElement: FormElement = {
   },
 };
 
-type CustomInstance = FormElementInstance & {
+type CustomInstance = FormElementsInstance & {
   extraAttributes: typeof extraAttributes;
 };
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
   const { label, required, placeHolder, helperText, rows } = element.extraAttributes;
   return (
@@ -84,7 +84,7 @@ function FormComponent({
   isInvalid,
   defaultValue,
 }: {
-  elementInstance: FormElementInstance;
+  elementInstance: FormElementsInstance;
   submitValue?: SubmitFunction;
   isInvalid?: boolean;
   defaultValue?: string;
@@ -126,9 +126,9 @@ function FormComponent({
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
 
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   const element = elementInstance as CustomInstance;
-  const { updateElement } = useDesigner();
+  const { updateElement } = UseDesigner();
   const form = useForm<propertiesFormSchemaType>({
     resolver: zodResolver(propertiesSchema),
     mode: "onBlur",

@@ -7,7 +7,7 @@ import {
   useDraggable,
 } from "@dnd-kit/core";
 import { Button, SelectItem, cn } from "@nextui-org/react";
-import { idGenerator } from "@/libs/idGenerator";
+import { idGenerator } from "@/lib/idGenerator";
 import {
   FormElements,
   ElementsType,
