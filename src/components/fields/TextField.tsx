@@ -95,7 +95,7 @@ function propertiesComponent({
       label: element.extraAttributes.label,
       helperText: element.extraAttributes.helperText,
       required: element.extraAttributes.required,
-      placeHolder: element.extraAttributes.placeHolder,
+      placeHolder: element.extraAttributes.placeholder,
     },
   });
 
@@ -145,7 +145,7 @@ function propertiesComponent({
             </FormItem>
           )}
         />
-        {/* <FormField
+        <FormField
           control={form.control}
           name="placeHolder"
           render={({ field }) => (
@@ -163,7 +163,7 @@ function propertiesComponent({
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
         <FormField
           control={form.control}
           name='helperText'
