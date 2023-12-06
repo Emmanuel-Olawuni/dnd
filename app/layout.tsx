@@ -36,7 +36,7 @@ export default function RootLayout({
         <ThemeContext>
             <DesignerContextProvider>
               {" "}
-              <Header /> {children}{" "}
+               {children}{" "}
             </DesignerContextProvider>
         </ThemeContext>
           </UserProvider>

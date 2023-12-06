@@ -26,7 +26,6 @@ const Designer = () => {
   });
   useDndMonitor({
     onDragEnd: (event: DragEndEvent) => {
-
       const { active, over } = event;
 
       if (!active || !over) return;
@@ -58,7 +57,7 @@ const Designer = () => {
           )}
         >
           {!droppable.isOver && elements.length === 0 && (
-            <p className="  text-3xl text-white-100 font-nunito flex flex-grow font-bold items-center tracking-wider">
+            <p className="  text-3xl text-primary font-nunito flex flex-grow font-bold items-center tracking-wider">
               Drop Here
             </p>
           )}
@@ -116,10 +115,8 @@ const Designer = () => {
         isDesignerElement: true,
       },
     });
-    if(draggable.isDragging) return ;
+    if (draggable.isDragging) return;
     const DesignerElement = FormElements[element.type].designerComponent;
-console.log(selectedElement);
-
 
     return (
       <div
@@ -173,8 +170,8 @@ console.log(selectedElement);
         <div
           className={cn(
             "flex w-full h-[120px] items-center rounded-md bg-accent/20 px-4 py-2 pointer-events-none opacity-100",
-            mouseIsOver && "opacity-20",
-        )}
+            mouseIsOver && "opacity-20"
+          )}
         >
           <DesignerElement elementInstance={element} />
         </div>

@@ -1,7 +1,6 @@
 import React, { useTransition } from "react";
 import { Button } from "../../shadcnui/ui/button";
 import { HiSaveAs } from "react-icons/hi";
-import { UpdateFormContent } from "@/actions/form";
 import { toast } from "../../shadcnui/ui/use-toast";
 import { FaSpinner } from "react-icons/fa";
 import UseDesigner from "../hooks/UserDesigner";
@@ -13,7 +12,7 @@ function SaveFormBtn({ id }: { id: number }) {
   const updateFormContent = async () => {
     try {
       const jsonElements = JSON.stringify(elements);
-      await UpdateFormContent(id, jsonElements);
+      // await UpdateFormContent(id, jsonElements);
       toast({
         title: "Success",
         description: "Your form has been saved",

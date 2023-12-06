@@ -74,7 +74,7 @@ function DesignerComponent({
       <label>
         {label}
         {required && "*"}
-        <Input readOnly radius="md" disabled placeholder={placeholder} className=" text-white  rounded-md" />
+        <Input  radius="md"  placeholder={placeholder} className=" text-white  rounded-md" />
         {helperText && (
           <p className=" text-muted-foreground text-[12px]">{helperText}</p>
           )}

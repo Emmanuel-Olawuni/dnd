@@ -22,7 +22,7 @@ const SidebarBtnElement = ({ formElements }: { formElements: FormElement }) => {
         draggable.isDragging && " ring-2 ring-white-300 "
       )}
     >
-      <Icon className="h-8 w-8 text-white cursor-grab" />
+      <Icon className="h-8 w-8 dark:text-white text-[green] cursor-grab" />
       <p className="text-xs">{label}</p>
     </button>
   );

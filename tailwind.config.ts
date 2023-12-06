@@ -1,45 +1,76 @@
-const { nextui } = require("@nextui-org/react");
-import type { Config } from "tailwindcss";
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+	],
   theme: {
-    colors: {
-      blue: "#8976FD",
-      "text-blue": "#332C5C",
-      "text-gray": "#606778",
-      black: "#12141A",
-      textBlack: '#030229',
-      border: "#CAD0DB",
-      white: {
-        100: "#ffffff",
-        200: "#ffffff",
-        300: "#ffffff",
-        400: "#ffffff",
-        500: "#ffffff",
-        600: "#cccccc",
-        700: "#999999",
-        800: "#666666",
-        900: "#333333",
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
       },
     },
-    fontFamily: {
-      inter: "var(--inter)",
-      nunito: "var(--nunito)",
-    },
-    fontSize: {
-      sm: "14px",
-      md: "18px",
-      lg: "20px",
-      xl: "24px",
-      "2xl": "30px",
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
-  darkMode: "class",
-  plugins: [nextui()],
-};
-export default config;
+  plugins: [require("tailwindcss-animate")],
+}

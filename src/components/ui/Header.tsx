@@ -49,11 +49,11 @@ export default function Header() {
         className="sm:hidden"
       />
       <NavbarContent
-        className="hidden font-nunito tracking-wide sm:flex gap-4"
+        className="hidden font-nunito tracking-wide sm:flex gap-4 "
         justify="center"
       >
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="#" className=" text-primary">
             Features
           </Link>
         </NavbarItem>
