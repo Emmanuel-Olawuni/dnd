@@ -4,8 +4,7 @@ import "./globals.css";
 import { ThemeContext } from "@/contexts/themecontext";
 import { UserProvider } from "@/contexts/UserContext";
 import DesignerContextProvider from "@/contexts/DesignerContext";
-
-import Header from "@/components/ui/Header";
+import NextTopLoader from 'nextjs-toploader'
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,6 +33,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunito.variable}  w-full h-full `}>
           <UserProvider>
         <ThemeContext>
+          <NextTopLoader />
             <DesignerContextProvider>
               {" "}
                {children}{" "}

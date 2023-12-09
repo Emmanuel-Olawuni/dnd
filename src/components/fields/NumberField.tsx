@@ -102,7 +102,7 @@ function FormComponent({
       </label>
       <Input
         type="number"
-        className={cn(error && "border-red-500")}
+        className={cn(error && "border-red-500 ") , 'font-semibold font-nunito text-sm text-secondary'}
         placeholder={placeHolder}
         onChange={(e) => setValue(e.target.value)}
         onBlur={(e) => {

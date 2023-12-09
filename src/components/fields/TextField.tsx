@@ -71,7 +71,7 @@ function DesignerComponent({
   const { label, helperText, placeholder, required } = element.extraAttributes;
   return (
     <div className="flex flex-col w-full gap-2 font-nunito font-medium text-md">
-      <label>
+      <label className="font-semibold font-nunito text-sm text-secondary">
         {label}
         {required && "*"}
         <Input  radius="md"  placeholder={placeholder} className=" text-white  rounded-md" />

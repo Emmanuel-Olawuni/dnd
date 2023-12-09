@@ -101,7 +101,7 @@ function FormComponent({
   const { label, required, placeHolder, helperText, rows } = element.extraAttributes;
   return (
     <div className="flex flex-col gap-2 w-full">
-      <Label className={cn(error && "text-red-500")}>
+      <Label className={cn(error && "text-red-500" , 'font-semibold font-nunito text-sm text-secondary') }>
         {label}
         {required && "*"}
       </Label>

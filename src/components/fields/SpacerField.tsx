@@ -50,7 +50,7 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementsI
   const { height } = element.extraAttributes;
   return (
     <div className="flex flex-col gap-2 w-full items-center">
-      <Label className="text-muted-foreground">Spacer field: {height}px</Label>
+      <Label className="font-semibold font-nunito text-sm text-secondary">Spacer field: {height}px</Label>
       <LuSeparatorHorizontal className="h-8 w-8" />
     </div>
   );

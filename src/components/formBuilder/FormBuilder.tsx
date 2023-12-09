@@ -41,7 +41,7 @@ const FormBuilder = ({ form }: { form: form }) => {
       <main className=" flex flex-col h-full w-full">
         <div className="flex justify-between border-b-2 gap-3 items-center">
           <div className=" p-2 font-nunito"> Form : {form}</div>
-          <div className="flex">
+          <div className="flex items-center justify-center gap-3">
             <div className="flex justify-center items-center p-2  gap-1 font-nunito text-white-100/80 font-thin tracking-wider text-sm cursor-pointer">
               <PreviewDialogBtn />
             </div>

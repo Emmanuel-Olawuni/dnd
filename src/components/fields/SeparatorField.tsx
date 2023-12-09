@@ -28,7 +28,7 @@ export const SeparatorFieldFormElement: FormElement = {
 function DesignerComponent({ elementInstance }: { elementInstance: FormElementsInstance }) {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <Label className="text-muted-foreground">Separator field</Label>
+      <Label className="font-semibold font-nunito text-sm text-secondary">Separator field</Label>
       <Separator />
     </div>
   );

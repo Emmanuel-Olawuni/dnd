@@ -3,34 +3,27 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarMenuItem,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarContent,
-  NavbarItem,
-  Link,
   DropdownItem,
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
   Avatar,
-  Button,
 } from "@nextui-org/react";
+import SwitchBox from "./Switch";
+import Link from "next/link";
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Products", href: "#" },
+  { name: "Docs", href: "#" },
+  { name: "Integrations", href: "#" },
+  { name: "Pricing", href: "#" },
 ];
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-white">
-      <header className="absolute inset-x-0 top-0 z-50">
+    <div className=" h-full w-full overflow-hidden">
+      <header className="absolute inset-x-0 top-0">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global"
@@ -38,11 +31,7 @@ export default function Hero() {
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <p className="  font-nunito font-semibold tracking-widest">TrustFlo</p>
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -60,11 +49,14 @@ export default function Hero() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="text-sm font-semibold leading-6 text-primary"
               >
                 {item.name}
               </a>
             ))}
+          </div>
+          <div className=" hidden lg:flex lg:gap-x-12 px-6">
+            <SwitchBox />
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Dropdown placement="bottom-end">
@@ -118,12 +110,8 @@ export default function Hero() {
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
-                />
+                <span className="sr-only">Trust Flo</span>
+               
               </a>
               <button
                 type="button"
@@ -196,7 +184,7 @@ export default function Hero() {
         </Dialog>
       </header>
 
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+      <div className="relative isolate px-6  lg:px-8 overflow-hidden">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -209,35 +197,33 @@ export default function Hero() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div className="mx-auto max-w-2xl h-full py-10 sm:py-48 lg:py-32">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{" "}
-              <a href="#" className="font-semibold text-indigo-600">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6  text-primary ring-1  ring-primary/10 hover:ring-primary/20">
+              Let's drag from element and make our forms.{" "}
+              <a href="#" className="font-semibold text-muted-foreground">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Data to enrich your online business
+            <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-6xl">
+             Build <span className=" text-secondary">Forms</span> and  <br />collect data
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
+            <p className="mt-6 text-lg leading-8 text-primary">
+            Drag and build your own form and style it, then share to your socials and friend, recieve and view submissions, email notifications and integrate with other apps.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              <Link
+                href='/create/test'
+                className="rounded-md bg-primary  text-secondary px-3.5 py-2.5 text-sm font-semibold  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               >
                 Get started
-              </a>
+              </Link>
               <a
                 href="#"
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="text-sm font-semibold leading-6 text-primary border-1 border-secondary"
               >
                 Learn more <span aria-hidden="true">→</span>
               </a>

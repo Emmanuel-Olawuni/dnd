@@ -39,10 +39,13 @@ export default function Header() {
   const id = idGenerator();
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen} className="px-4 py-2">
-      <NavbarBrand>
+      <NavbarBrand >
+        <Link href="/">
+          
         <p className="font-bold text-inherit font-nunito tracking-wider">
           TrustFlo
         </p>
+        </Link>
       </NavbarBrand>
       <NavbarMenuToggle
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}

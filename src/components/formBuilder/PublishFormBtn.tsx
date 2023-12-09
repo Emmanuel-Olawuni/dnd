@@ -16,9 +16,12 @@ import {
 } from "../../shadcnui/ui/alert-dialog";
 import { Button } from "../../shadcnui/ui/button";
 import { toast } from "../../shadcnui/ui/use-toast";
+// import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti'
 
 function PublishFormBtn({ id }: { id: number }) {
   const [loading, startTransition] = useTransition();
+  // const { width, height } = useWindowSize()
   const router = useRouter();
 function test(){
   toast({
@@ -44,6 +47,7 @@ function test(){
   }
 
   return (
+    
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button className="gap-2 text-white bg-gradient-to-r from-indigo-400 to-cyan-400">
@@ -70,7 +74,9 @@ function test(){
             onClick={(e) => {
               e.preventDefault();
               // startTransition(publishForm);
-              test()
+              // test()
+              // Coffeti()
+        
             }}
           >
             Proceed {loading && <FaSpinner className="animate-spin" />}
@@ -79,6 +85,17 @@ function test(){
       </AlertDialogContent>
     </AlertDialog>
   );
+}
+
+function Coffeti(){
+  return (
+    <Confetti
+    width={window.innerWidth}
+    height={window.innerHeight}
+    numberOfPieces={1000}
+    recycle={false}
+  />
+  )
 }
 
 export default PublishFormBtn;
